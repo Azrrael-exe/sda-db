@@ -8,8 +8,6 @@ var deviceSchema = mongoose.Schema({
 });
 
 deviceSchema.statics.createDevice = function(req, next){
-
 }
-
-
+  
 module.exports = mongoose.model('Device', deviceSchema);

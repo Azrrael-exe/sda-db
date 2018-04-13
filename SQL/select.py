@@ -6,7 +6,7 @@ conn = sqlite3.connect('sda.db')
 
 c = conn.cursor()
 
-res = c.execute("SELECT nombre, apellido FROM estudiantes WHERE edad >=20");
+res = c.execute("SELECT nombre, apellido FROM estudiantes WHERE sexo='Femenino'");
 
 for row in res:
     print row

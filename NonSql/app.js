@@ -6,7 +6,7 @@ var app = express();
 
 // --- Mongo Config ---
 mongoose.Promise = global.Promise;
-mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost:27017/taxo");
+mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost:27017/sda");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
