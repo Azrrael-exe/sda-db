@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose');
+var morgan = require('morgan')
 
 var app = express();
 
@@ -11,10 +12,13 @@ mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost:27017/sda");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(morgan('common'));
+
 var api = require('./routes/api')
+var arduino = require('./routes/arduino')
 
 app.use('/api', api);
-
+app.use('/arduino', arduino);
 app.get('/', function(req, res, next){
   res.send({
     message : "Hello World!"
