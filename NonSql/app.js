@@ -15,10 +15,8 @@ app.use(bodyParser.json());
 app.use(morgan('common'));
 
 var api = require('./routes/api')
-var arduino = require('./routes/arduino')
 
 app.use('/api', api);
-app.use('/arduino', arduino);
 app.get('/', function(req, res, next){
   res.send({
     message : "Hello World!"

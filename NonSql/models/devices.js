@@ -1,13 +1,20 @@
 var mongoose = require('mongoose');
 
 var deviceSchema = mongoose.Schema({
-  name : {type : String, required: true},
+  device_id : {type : String, required: true},
   location : {type : String},
   description : {type : String},
-  status : {type : String}
 });
 
-deviceSchema.statics.createDevice = function(req, next){
+deviceSchema.statics.findDevice = function(req, res, next){
+  mongoose.model('Device').findOne({device_id: req.body.device_id || req.params.device_id}, function(err, device){
+    if(err){
+      next(err);
+    } else {
+      req.device = device;
+      next();
+    }
+  });
 }
-  
+
 module.exports = mongoose.model('Device', deviceSchema);

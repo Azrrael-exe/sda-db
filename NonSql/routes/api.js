@@ -1,30 +1,14 @@
 var express = require('express');
 var router = express.Router();
-var device = require('../models/devices')
+var device = require('./devices')
 
 router.get('/', function(req, res, next){
-  device.find({}).then(function(err, data){
-    if(err){
-      res.send(err);
-    }
-    res.send(data);
-  })
+  res.send({
+    message : "Welcome to API"
+  });
 })
 
-router.post('/', function (req, res, next) {
-  var newDevice = new device();
-  newDevice['name'] = req.body.name
-  newDevice['status'] = req.body.status
-  newDevice.save().then(function(err, data){
-    if(err){
-      res.send(err)
-    }
-    else {
-      res.send({
-        message : "Device created!"
-      })
-    }
-  })
-})
+router.use('/device', device);
 
 module.exports = router
+
